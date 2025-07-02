@@ -1,0 +1,40 @@
+<!-- templates/admin_messages.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Messages</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gradient-to-r from-pink-800 via-purple-800 to-indigo-900 p-4 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="{{ url_for('dashboard') }}" class="text-2xl font-bold">BlogNexus Admin</a>
+      <a href="{{ url_for('logout') }}" class="bg-red-600 hover:bg-red-500 px-4 py-2 rounded">Logout</a>
+    </div>
+  </nav>
+
+  <main class="pt-24 px-4 max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Contact Messages</h1>
+
+    {% if messages %}
+    <div class="space-y-4">
+      {% for m in messages %}
+      <div class="bg-gray-800 p-4 rounded-lg shadow">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-lg font-semibold">{{ m.subject }}</span>
+          <span class="text-sm text-gray-400">{{ m.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+        </div>
+        <p class="text-gray-300 mb-1"><strong>From:</strong> {{ m.name }} &lt;{{ m.email }}&gt;</p>
+        <p class="text-gray-200 whitespace-pre-wrap">{{ m.content }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <p class="text-gray-400">No messages yet.</p>
+    {% endif %}
+  </main>
+</body>
+</html>

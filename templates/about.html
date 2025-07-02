@@ -1,0 +1,95 @@
+<!-- templates/about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - BlogNexus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gradient-to-r from-pink-800 via-purple-800 to-indigo-900 text-white shadow-lg z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="{{ url_for('index') }}" class="text-3xl font-extrabold">BlogNexus</a>
+      <div class="flex items-center space-x-4">
+        <a href="{{ url_for('index') }}" class="hover:text-yellow-200">Home</a>
+        <a href="{{ url_for('categories') }}" class="hover:text-yellow-200">Categories</a>
+        <a href="{{ url_for('contact') }}" class="hover:text-yellow-200">Contact</a>
+        <a href="{{ url_for('technology') }}" class="hover:text-yellow-200">Technology</a>
+        {% if current_user.name == 'Guest' %}
+          <a href="{{ url_for('login') }}" class="bg-purple-600 px-3 py-1 rounded">Login</a>
+          <a href="{{ url_for('signup') }}" class="bg-purple-600 px-3 py-1 rounded">Sign Up</a>
+        {% else %}
+          <a href="{{ url_for('dashboard') }}" class="hover:text-yellow-200">Dashboard</a>
+          <a href="{{ url_for('logout') }}" class="bg-purple-600 px-3 py-1 rounded">Logout</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-12">
+    <div class="max-w-4xl mx-auto px-4 space-y-12">
+      <!-- Profile Section -->
+      <div class="flex flex-col md:flex-row items-center md:space-x-8">
+        <div class="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-purple-600 mb-6 md:mb-0">
+          <img src="{{ url_for('static', filename='uploads/profile.jpg') }}" alt="Swapnil Dixit" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h1 class="text-4xl font-bold mb-4">Hello, I’m Swapnil Dixit</h1>
+          <p>I am pursuing B.Tech in Computer Science and Engineering from BPIT (affiliated to GGSIPU). From childhood, I have been fascinated by software used in computer architecture. This curiosity led me to become proficient in C/C++, Java, and web development.</p>
+        </div>
+      </div>
+
+      <!-- Website Overview -->
+      <section>
+        <h2 class="text-3xl font-semibold mb-3">About BlogNexus</h2>
+        <p>BlogNexus is a dynamic blogging platform designed to empower users to share insightful content, manage posts, and explore categorized topics. It offers a smooth, responsive experience across devices.</p>
+      </section>
+
+      <!-- Features Section -->
+      <section>
+        <h2 class="text-3xl font-semibold mb-3">Key Features</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li><i class="fas fa-user-check mr-2 text-purple-400"></i>User Authentication (Signup, Login, Logout)</li>
+          <li><i class="fas fa-edit mr-2 text-purple-400"></i>CRUD posts with image uploads</li>
+          <li><i class="fas fa-filter mr-2 text-purple-400"></i>Category filtering (Technology, Health, Travel, Finance, Lifestyle)</li>
+          <li><i class="fas fa-list-ol mr-2 text-purple-400"></i>Pagination for home feed</li>
+          <li><i class="fas fa-shield-alt mr-2 text-purple-400"></i>CSRF protection on all forms</li>
+          <li><i class="fas fa-mobile-alt mr-2 text-purple-400"></i>Responsive, dark-themed UI</li>
+        </ul>
+      </section>
+
+      <!-- Tech Stack -->
+      <section>
+        <h2 class="text-3xl font-semibold mb-3">Tech Stack</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-medium mb-2"><i class="fab fa-python mr-2 text-yellow-300"></i>Backend</h3>
+            <ul class="list-disc list-inside space-y-1">
+              <li><i class="fab fa-python mr-2"></i>Python &amp; Flask</li>
+              <li><i class="fas fa-database mr-2"></i>MySQL</li>
+              <li><i class="fas fa-shield-alt mr-2"></i>Flask-WTF</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-medium mb-2"><i class="fab fa-js-square mr-2 text-yellow-400"></i>Frontend</h3>
+            <ul class="list-disc list-inside space-y-1">
+              <li><i class="fab fa-css3-alt mr-2 text-blue-500"></i>Tailwind CSS</li>
+              <li><i class="fab fa-bootstrap mr-2 text-purple-500"></i>Bootstrap 4</li>
+              <li><i class="fab fa-font-awesome-alt mr-2 text-indigo-400"></i>Font Awesome</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects & Hackathons -->
+      <section>
+        <h2 class="text-3xl font-semibold mb-3">Projects &amp; Events</h2>
+        <p>I’ve built projects like a sorting visualization using the SGL graphics library in C++, and I am currently working on Spring Boot API projects. I’ve also participated in hackathons and ideathons including Code Kshetra, Hack Hazard, and Smart Delhi Ideathon.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
